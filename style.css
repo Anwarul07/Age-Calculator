@@ -58,8 +58,8 @@ span {
 .input-box input::-webkit-calendar-picker-indicator {
   top: 8px;
   bottom: 0;
-  left: 80%;
-  right: 0;
+  left:-100%;
+  right:0;
   width: auto;
   position: absolute;
   background-size: 30px;
