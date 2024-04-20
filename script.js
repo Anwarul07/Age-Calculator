@@ -2,22 +2,25 @@ console.log("Age Calculator");
 let userInput = document.getElementById("date");
 let button = document.querySelector("button");
 userInput.max = new Date().toISOString().split("T")[0];
+let result = document.getElementById("result");
 
-calculate = () => {
+function calculate() {
     let birthDate = new Date(userInput.value);
     let d1 = birthDate.getDate();
     let m1 = birthDate.getMonth() + 1;
     let y1 = birthDate.getFullYear();
 
     let today = new Date();
-    let d2 = birthDate.getDate();
-    let m2 = birthDate.getMonth() + 1;
-    let y2 = birthDate.getFullYear();
+    let d2 = today.getDate();
+    let m2 = today.getMonth() + 1;
+    let y2 = today.getFullYear();
+
+
     let d3, m3, y3;
 
     y3 = y2 - y1;
     if (m2 >= m1) {
-        m3 = m3 - m1;
+        m3 = m2 - m1;
     }
     else {
         y3--;
@@ -28,17 +31,24 @@ calculate = () => {
 
     } else {
         m3--;
-        d3 = getDaysinMonth(y1, m1) + d2 - d1
+        d3 = getDaysInMonth(y1, m1) + d2 - d1;
 
     }
-    function getDaysinMonth(year, month) {
-        return new Date(year, month, 0).getDate();
+    if (m3 < 0) {
+        m3 = 11;
+        y3--;
     }
-
-
-
+    result.innerHTML = `You are  <span>${y3} </span> year  <span>${m3}</span> month and  <span>${d3}</span> days old  `;
+    console.log(y3)
+    console.log(m3)
+    console.log(d3)
 
 }
+
+function getDaysInMonth(year, month) {
+    return new Date(year, month, 0).getDate();
+}
+
 button.addEventListener("click", () => {
     calculate();
 })
